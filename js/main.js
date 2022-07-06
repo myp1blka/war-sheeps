@@ -1,12 +1,12 @@
 
-const elStartGameButton = document.querySelector('input[name="bStartGame"]'); // стартова кнопка
-const elFireButton = document.querySelector('input[name="bFire"]'); // байрактарна кнопка
+const elStartGameButton         = document.querySelector('input[name="bStartGame"]'); // стартова кнопка
+const elFireButton              = document.querySelector('input[name="bFire"]'); // байрактарна кнопка
 
-const elNumberOfSheepUnits = document.querySelector('input[name="number-of-sheep-units"]');
+const elNumberOfSheepUnits      = document.querySelector('input[name="number-of-sheep-units"]');
 
-const elPlayer1field = document.querySelector('.player1field');
-const elPlayer2field = document.querySelector('.player2field');
-const elGameLog = document.querySelector('.gameLog');
+const elPlayer1field            = document.querySelector('.player1field');
+const elPlayer2field            = document.querySelector('.player2field');
+const elGameLog                 = document.querySelector('.gameLog');
 
 let numberOfSheepUnits;
 
@@ -15,9 +15,52 @@ let player2sheeps = [];
 
 let player1HTML = ''; 
 let player2HTML = ''; 
-let logHTML = ''; 
+let logHTML     = ''; 
 
+const unit1etalon = { 
+    size: 4 ,
+    health: 200 ,
+    force:  100 ,
+    power:  1 
+};
+const unit2etalon = {  
+    size: 3 ,
+    health: 120 ,
+    force:  60 ,
+    power:  2 
+};
+const unit3etalon = {  
+    size: 2 ,
+    health: 80 ,
+    force:  40 ,
+    power:  3 
+};
+const unit4etalon = {  
+    size: 1 ,
+    health: 30 ,
+    force:  15 ,
+    power:  4 
+};
 
+// ================================================================================================
+// Case of size units
+const SelectUnitSize = (pSize) => {
+    switch (pSize){
+        case 1:
+            let unit1 = Object.assign({}, unit1etalon);
+            return unit1;            
+        case 2:
+            let unit2 = Object.assign({}, unit2etalon);
+            return unit2;      
+        case 3:
+            let unit3 = Object.assign({}, unit3etalon);
+            return unit3;      
+        case 4:
+            let unit4 = Object.assign({}, unit4etalon);
+            return unit4;      
+
+    }
+}
 
 
 
@@ -25,22 +68,8 @@ let logHTML = '';
 // Generate Sheeps Player 1
 const GenerateSheepsPlayer1 = (e) => {
     for (let i = 0; i < (numberOfSheepUnits); i++) {
-
-        let unitSize    = randValue(1,    4, 1);
-        let unitHealth  = randValue(10, 100, 1);
-        let unitForce   = randValue(10, 100, 1);
-        let unitPower   = randValue(10, 100, 1);
-            
-
-        let unit = {  
-            size:   unitSize,
-            health: unitHealth ,
-            force:  unitForce ,
-            power:  unitPower 
-            };
-        player1sheeps.push(unit);
+        player1sheeps.push(SelectUnitSize(randValue(1, 4, 1)));
     }
-    
 }
 
 
@@ -48,24 +77,13 @@ const GenerateSheepsPlayer1 = (e) => {
 // Generate Sheeps Player 2
 const GenerateSheepsPlayer2 = (e) => {
     for (let i = 0; i < (numberOfSheepUnits); i++) {
-
-        let unitSize    = randValue(1,    4, 1);
-        let unitHealth  = randValue(10, 100, 1);
-        let unitForce   = randValue(10, 100, 1);
-        let unitPower   = randValue(10, 100, 1);
-            
-
-        let unit = {  
-            size:   unitSize,
-            health: unitHealth ,
-            force:  unitForce ,
-            power:  unitPower 
-            };
-        player2sheeps.push(unit);
+        player2sheeps.push(SelectUnitSize(randValue(1, 4, 1)));
     }
-
 }
 
+
+// ================================================================================================
+// Draw Step Game
 const DrawStepGame = (e) => {
     player1HTML = ''; 
     player2HTML = ''; 
@@ -87,7 +105,7 @@ const DrawStepGame = (e) => {
 
         // Player 2
         player2HTML += `
-        <div class="sheep1">
+        <div class="sheep2">
         Підрозділ номер ${i+1}<br>
         ${imageSheeps.repeat(player2sheeps[i].size)}<br>
         Health: ${player2sheeps[i].health } 
@@ -102,16 +120,23 @@ const DrawStepGame = (e) => {
     elGameLog.     insertAdjacentHTML('beforeend', logHTML);
 }
 
+
+// ================================================================================================
+// FIRE function
 const FireFunction = (e) => {
 
 logHTML += ` Підрозділ 1(${player1sheeps[0].health}) <br>`;
 player1sheeps[0].health -= 50;
-logHTML += ` Підрозділ 1 втрачає 50 очок = ${player1sheeps[0].health} `;
+logHTML += ` Підрозділ 1 втрачає 50 очок = ${player1sheeps[0].health}  <br>`;
 
 DrawStepGame();
 
 
 }
+
+
+
+
 
 
 
