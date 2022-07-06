@@ -87,8 +87,11 @@ const GenerateSheepsPlayer2 = (e) => {
 const DrawStepGame = (e) => {
     player1HTML = ''; 
     player2HTML = ''; 
+    
     elPlayer1field.innerHTML = '';
     elPlayer2field.innerHTML = '';
+    elGameLog.innerHTML = '';
+
 
     for (let i = 0; i < (numberOfSheepUnits); i++) {
         let imageSheeps = `<img src="img/sheep${ randValue(0, 4, 1) }.png" width="32"></img>`;
