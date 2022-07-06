@@ -1,37 +1,51 @@
 
 .playZone {
-    width: 200px;
-    height: 100px;
-    background-color: blue;
-    border: 4px solid green;
-    padding: 5px 6px 7px;
+    /* background-color: blue; */
+    /* border: 4px solid green; */
+    min-height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* padding: 5px 6px 7px; */
     margin-top: 50px;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 
 .player1field {
-    width: 200px;
-    height: 100px;
-    background-color: yellow;
-    /* border: 4px solid red; */
+    width: 300px;
+    min-height: 150px;
+    /* background-color: gray; */
+    /* border: 1px solid rgb(0, 0, 0); */
     border-radius: 20px;
 }
 .gameLog {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 800px;
+    width: 300px;
     min-height: 150px;
-    background-color: green;
-    /* border: 4px solid red; */
-    border-radius: 20px;
+    /* background-color: yellow; */
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
 }
 .player2field {
-    width: 70px;
-    height: 50px;
-    background-color: gray;
-    /* border: 4px solid red; */
+    width: 300px;
+    min-height: 150px;
+    /* background-color: gray; */
+    /* border: 1px solid rgb(0, 0, 0); */
     border-radius: 20px;
 }
-
+.sheep1 {
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    margin: 0 auto;
+}
+.sheep2 {
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+}
+.sheep3 {
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 20px;
+}
+.sheep4 {
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 20px;
+}
