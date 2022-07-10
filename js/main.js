@@ -21,25 +21,29 @@ const unit1etalon = {
     size: 4 ,
     health: 200 ,
     force:  100 ,
-    power:  1 
+    power: 1 ,
+    scin: 0 
 };
 const unit2etalon = {  
     size: 3 ,
     health: 120 ,
     force:  60 ,
-    power:  2 
+    power:  2 ,
+    scin: 0 
 };
 const unit3etalon = {  
     size: 2 ,
     health: 80 ,
     force:  40 ,
-    power:  3 
+    power:  3 ,
+    scin: 0 
 };
 const unit4etalon = {  
     size: 1 ,
     health: 30 ,
     force:  15 ,
-    power:  4 
+    power:  4 ,
+    scin: 0 
 };
 
 // ================================================================================================
@@ -62,22 +66,18 @@ const SelectUnitSize = (pSize) => {
     }
 }
 
-
-
 // ================================================================================================
-// Generate Sheeps Player 1
-const GenerateSheepsPlayer1 = (e) => {
+// Generate Sheeps
+const GenerateSheeps = (e) => {
     for (let i = 0; i < (numberOfSheepUnits); i++) {
         player1sheeps.push(SelectUnitSize(randValue(1, 4, 1)));
+        player1sheeps[i].scin = randValue(0, 4, 1);
+        console.log(player1sheeps[i].scin);
     }
-}
-
-
-// ================================================================================================
-// Generate Sheeps Player 2
-const GenerateSheepsPlayer2 = (e) => {
     for (let i = 0; i < (numberOfSheepUnits); i++) {
         player2sheeps.push(SelectUnitSize(randValue(1, 4, 1)));
+        player2sheeps[i].scin = randValue(0, 4, 1);
+        console.log(player1sheeps[i].scin);        
     }
 }
 
@@ -91,16 +91,18 @@ const DrawStepGame = (e) => {
     elPlayer1field.innerHTML = '';
     elPlayer2field.innerHTML = '';
     elGameLog.innerHTML = '';
-
+    // let y = numberOfSheepUnits * 2;
 
     for (let i = 0; i < (numberOfSheepUnits); i++) {
-        let imageSheeps = `<img src="img/sheep${ randValue(0, 4, 1) }.png" width="32"></img>`;
+        let imageSheeps1 = `<img src="img/sheep${player1sheeps[i].scin}.png" width="32"></img>`;
+        let imageSheeps2 = `<img src="img/sheep${player2sheeps[i].scin}.png" width="32"></img>`;
+
 
         // Player 1
         player1HTML += `
-        <div class="sheep1">
+        <div class="sheep1" id="${i+1}">
         Підрозділ номер ${i+1}<br>
-        ${imageSheeps.repeat(player1sheeps[i].size)}<br>
+        ${imageSheeps1.repeat(player1sheeps[i].size)}<br>
         Health: ${player1sheeps[i].health } 
         Force:  ${player1sheeps[i].force } 
         Power:  ${player1sheeps[i].power }
@@ -108,9 +110,9 @@ const DrawStepGame = (e) => {
 
         // Player 2
         player2HTML += `
-        <div class="sheep2">
+        <div class="sheep2" id="${i+1}">
         Підрозділ номер ${i+1}<br>
-        ${imageSheeps.repeat(player2sheeps[i].size)}<br>
+        ${imageSheeps2.repeat(player2sheeps[i].size)}<br>
         Health: ${player2sheeps[i].health } 
         Force:  ${player2sheeps[i].force } 
         Power:  ${player2sheeps[i].power }
@@ -137,20 +139,6 @@ DrawStepGame();
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // ================================================================================================
 // Start Game
 const StartGameFunction = (e) => {
@@ -168,8 +156,7 @@ const StartGameFunction = (e) => {
     player1sheeps.length = [];
     player2sheeps.length = [];
 
-    GenerateSheepsPlayer1();
-    GenerateSheepsPlayer2();
+    GenerateSheeps();
 
     DrawStepGame();
 
@@ -185,3 +172,10 @@ const randValue = (min,max,num) => {
 // Клік на кнопку
 elStartGameButton.addEventListener('click', () => {StartGameFunction()});
 elFireButton.addEventListener('click', () => {FireFunction()});
+
+
+
+
+	//   document.onclick = function(e) {
+	//     console.log(e.target.id);
+	//   };
